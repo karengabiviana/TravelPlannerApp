@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		D6F461EA2B64424E00A82B99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F461E92B64424E00A82B99 /* AppDelegate.swift */; };
 		D6F461EC2B64424E00A82B99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F461EB2B64424E00A82B99 /* SceneDelegate.swift */; };
-		D6F461EE2B64424E00A82B99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F461ED2B64424E00A82B99 /* ViewController.swift */; };
-		D6F461F12B64424E00A82B99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6F461EF2B64424E00A82B99 /* Main.storyboard */; };
+		D6F461EE2B64424E00A82B99 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F461ED2B64424E00A82B99 /* IntroViewController.swift */; };
 		D6F461F42B64424E00A82B99 /* TravelPlanningApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D6F461F22B64424E00A82B99 /* TravelPlanningApp.xcdatamodeld */; };
 		D6F461F62B64425200A82B99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6F461F52B64425200A82B99 /* Assets.xcassets */; };
 		D6F461F92B64425200A82B99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6F461F72B64425200A82B99 /* LaunchScreen.storyboard */; };
@@ -40,8 +39,7 @@
 		D6F461E62B64424E00A82B99 /* TravelPlanningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelPlanningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F461E92B64424E00A82B99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6F461EB2B64424E00A82B99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D6F461ED2B64424E00A82B99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D6F461F02B64424E00A82B99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D6F461ED2B64424E00A82B99 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		D6F461F32B64424E00A82B99 /* TravelPlanningApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TravelPlanningApp.xcdatamodel; sourceTree = "<group>"; };
 		D6F461F52B64425200A82B99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6F461F82B64425200A82B99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -101,12 +99,9 @@
 		D6F461E82B64424E00A82B99 /* TravelPlanningApp */ = {
 			isa = PBXGroup;
 			children = (
-				D6F461E92B64424E00A82B99 /* AppDelegate.swift */,
-				D6F461EB2B64424E00A82B99 /* SceneDelegate.swift */,
-				D6F461ED2B64424E00A82B99 /* ViewController.swift */,
-				D6F461EF2B64424E00A82B99 /* Main.storyboard */,
-				D6F461F52B64425200A82B99 /* Assets.xcassets */,
-				D6F461F72B64425200A82B99 /* LaunchScreen.storyboard */,
+				D6F4621C2B6448ED00A82B99 /* Application */,
+				D6F4621F2B64498000A82B99 /* Sources */,
+				D6F4621E2B64495100A82B99 /* Resources */,
 				D6F461FA2B64425200A82B99 /* Info.plist */,
 				D6F461F22B64424E00A82B99 /* TravelPlanningApp.xcdatamodeld */,
 			);
@@ -128,6 +123,48 @@
 				D6F4620F2B64425300A82B99 /* TravelPlanningAppUITestsLaunchTests.swift */,
 			);
 			path = TravelPlanningAppUITests;
+			sourceTree = "<group>";
+		};
+		D6F4621C2B6448ED00A82B99 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				D6F461EB2B64424E00A82B99 /* SceneDelegate.swift */,
+				D6F461E92B64424E00A82B99 /* AppDelegate.swift */,
+				D6F461F72B64425200A82B99 /* LaunchScreen.storyboard */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		D6F4621E2B64495100A82B99 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D6F461F52B64425200A82B99 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D6F4621F2B64498000A82B99 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				D6F462202B644A2100A82B99 /* Intro */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		D6F462202B644A2100A82B99 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				D6F462212B644A5400A82B99 /* View */,
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
+		D6F462212B644A5400A82B99 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D6F461ED2B64424E00A82B99 /* IntroViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,7 +273,6 @@
 			files = (
 				D6F461F92B64425200A82B99 /* LaunchScreen.storyboard in Resources */,
 				D6F461F62B64425200A82B99 /* Assets.xcassets in Resources */,
-				D6F461F12B64424E00A82B99 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,7 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6F461F42B64424E00A82B99 /* TravelPlanningApp.xcdatamodeld in Sources */,
-				D6F461EE2B64424E00A82B99 /* ViewController.swift in Sources */,
+				D6F461EE2B64424E00A82B99 /* IntroViewController.swift in Sources */,
 				D6F461EA2B64424E00A82B99 /* AppDelegate.swift in Sources */,
 				D6F461EC2B64424E00A82B99 /* SceneDelegate.swift in Sources */,
 			);
@@ -301,14 +337,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D6F461EF2B64424E00A82B99 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D6F461F02B64424E00A82B99 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D6F461F72B64425200A82B99 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -451,7 +479,6 @@
 				INFOPLIST_FILE = TravelPlanningApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -479,7 +506,6 @@
 				INFOPLIST_FILE = TravelPlanningApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
