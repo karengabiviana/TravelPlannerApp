@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D677714C2B8A3B670019F96F /* UIView+Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D677714B2B8A3B670019F96F /* UIView+Pin.swift */; };
 		D6F461EA2B64424E00A82B99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F461E92B64424E00A82B99 /* AppDelegate.swift */; };
 		D6F461EC2B64424E00A82B99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F461EB2B64424E00A82B99 /* SceneDelegate.swift */; };
 		D6F461EE2B64424E00A82B99 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F461ED2B64424E00A82B99 /* IntroViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D677714B2B8A3B670019F96F /* UIView+Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Pin.swift"; sourceTree = "<group>"; };
 		D6F461E62B64424E00A82B99 /* TravelPlanningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelPlanningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F461E92B64424E00A82B99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6F461EB2B64424E00A82B99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D677714A2B8A3B0F0019F96F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D677714B2B8A3B670019F96F /* UIView+Pin.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		D6F461DD2B64424E00A82B99 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +109,7 @@
 		D6F461E82B64424E00A82B99 /* TravelPlanningApp */ = {
 			isa = PBXGroup;
 			children = (
+				D677714A2B8A3B0F0019F96F /* Extensions */,
 				D6F4621C2B6448ED00A82B99 /* Application */,
 				D6F4621F2B64498000A82B99 /* Sources */,
 				D6F4621E2B64495100A82B99 /* Resources */,
@@ -297,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D677714C2B8A3B670019F96F /* UIView+Pin.swift in Sources */,
 				D6F461F42B64424E00A82B99 /* TravelPlanningApp.xcdatamodeld in Sources */,
 				D6F461EE2B64424E00A82B99 /* IntroViewController.swift in Sources */,
 				D6F461EA2B64424E00A82B99 /* AppDelegate.swift in Sources */,
