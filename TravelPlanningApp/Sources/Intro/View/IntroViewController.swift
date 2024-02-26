@@ -9,32 +9,36 @@ import UIKit
 
 final class IntroViewController: UIViewController {
 
-    private lazy var helloWorldLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Hello, World!"
-        label.font = UIFont.systemFont(ofSize: 24)
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .magenta
-
-        addSubviews()
-        constraintsLabel()
+        self.navigationController?.title = "Planning Travel"
+        configureTableView()
 
     }
 
-    func addSubviews() {
-        view.addSubview(helloWorldLabel)
+    func configureTableView() {
+        view.addSubview(tableView)
+        setTableViewDelegates()
+        tableView.rowHeight = 40
+        tableView.pin(to: view)
+        tableView.backgroundColor = .green
     }
 
-    func constraintsLabel() {
-        helloWorldLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        helloWorldLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    func setTableViewDelegates() {
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+}
+
+extension IntroViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 8
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
 
 }
-
