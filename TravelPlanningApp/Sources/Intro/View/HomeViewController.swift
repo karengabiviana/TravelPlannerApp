@@ -1,5 +1,5 @@
 //
-//  IntroViewController.swift
+//  HomeViewController.swift
 //  TravelPlanningApp
 //
 //  Created by Karen Oliveira on 26/01/24.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-final class IntroViewController: UIViewController {
+final class HomeViewController: UIViewController {
 
     let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.title = "Planning Travel"
+        self.navigationItem.title = "Travel Planner"
         configureTableView()
 
     }
@@ -23,7 +23,6 @@ final class IntroViewController: UIViewController {
         setTableViewDelegates()
         tableView.rowHeight = 40
         tableView.pin(to: view)
-        tableView.backgroundColor = .green
     }
 
     func setTableViewDelegates() {
@@ -32,7 +31,7 @@ final class IntroViewController: UIViewController {
     }
 }
 
-extension IntroViewController: UITableViewDelegate, UITableViewDataSource {
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 8
     }
