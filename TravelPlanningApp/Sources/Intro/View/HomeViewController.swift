@@ -9,8 +9,14 @@ import UIKit
 
 final class HomeViewController: UIViewController {
 
-    let tableView = UITableView()
     var items = [String]()
+    
+    let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "item")
+        return tableView
+    }()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
