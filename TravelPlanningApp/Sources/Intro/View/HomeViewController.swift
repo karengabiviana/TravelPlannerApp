@@ -44,17 +44,43 @@ final class HomeViewController: UIViewController {
     }
 
     @objc func addItem() {
-        let alertController = UIAlertController(title: "Enter a travel name: ", message: nil, preferredStyle: .alert)
-        alertController.addTextField()
+        let alertController = UIAlertController(title: "Enter travel details: ", message: nil, preferredStyle: .alert)
 
+        alertController.addTextField { textField in
+            textField.placeholder = "Destination"
+        }
+
+        alertController.addTextField { textField in
+            textField.placeholder = "Start Date"
+            let datePicker = UIDatePicker()
+            datePicker.datePickerMode = .date
+            textField.inputView = datePicker
+        }
+
+        alertController.addTextField { textField in
+            textField.placeholder = "End Date"
+            let datePicker = UIDatePicker()
+            datePicker.datePickerMode = .date
+            textField.inputView = datePicker
+        }
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned self, alertController] _ in
             let item = alertController.textFields![0].text
             self.submit(item!)
         }
+
+        alertController.addAction(cancelAction)
         alertController.addAction(submitAction)
         present(alertController, animated: true)
-
     }
+
+    // DateFormatter to convert text to Date
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter
+    }()
 
     @objc func clearItem() {
 
