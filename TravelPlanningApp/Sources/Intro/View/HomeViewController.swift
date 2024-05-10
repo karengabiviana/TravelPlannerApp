@@ -42,26 +42,61 @@ final class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
-
+    
     @objc func addItem() {
-        let alertController = UIAlertController(title: "Enter a travel name: ", message: nil, preferredStyle: .alert)
-        alertController.addTextField()
+        let alertController = UIAlertController(title: "Enter travel details: ", message: nil, preferredStyle: .alert)
 
-        let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned self, alertController] _ in
-            let item = alertController.textFields![0].text
-            self.submit(item!)
+        alertController.addTextField { textField in
+            textField.placeholder = "Destination"
         }
+
+        alertController.addTextField { textField in
+            textField.placeholder = "Start Date"
+            let datePicker = UIDatePicker()
+            datePicker.datePickerMode = .date
+            textField.inputView = datePicker
+        }
+
+        alertController.addTextField { textField in
+            textField.placeholder = "End Date"
+            let datePicker = UIDatePicker()
+            datePicker.datePickerMode = .date
+            textField.inputView = datePicker
+        }
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned self, alertController] _ in
+            guard let destinationTextField = alertController.textFields?[0],
+                  let startDateTextField = alertController.textFields?[1],
+                  let endDateTextField = alertController.textFields?[2],
+                  let destination = destinationTextField.text,
+                  let startDateText = startDateTextField.text,
+                  let endDateText = endDateTextField.text,
+                  let startDate = dateFormatter.date(from: startDateText),
+                  let endDate = dateFormatter.date(from: endDateText)
+            else { return }
+
+            self.submit(destination: destination, startDate: startDate, endDate: endDate)
+        }
+
+        alertController.addAction(cancelAction)
         alertController.addAction(submitAction)
         present(alertController, animated: true)
-
     }
+
+    // DateFormatter to convert text to Date
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter
+    }()
 
     @objc func clearItem() {
 
     }
 
-    func submit (_ item: String) {
-        items.insert(item, at: 0)
+    func submit (destination: String, startDate: Date, endDate: Date) {
+        items.insert(destination, at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
