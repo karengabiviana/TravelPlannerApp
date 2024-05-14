@@ -66,17 +66,20 @@ final class HomeViewController: UIViewController {
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned self, alertController] _ in
-            guard let destinationTextField = alertController.textFields?[0],
-                  let startDateTextField = alertController.textFields?[1],
-                  let endDateTextField = alertController.textFields?[2],
-                  let destination = destinationTextField.text,
-                  let startDateText = startDateTextField.text,
-                  let endDateText = endDateTextField.text,
-                  let startDate = dateFormatter.date(from: startDateText),
-                  let endDate = dateFormatter.date(from: endDateText)
-            else { return }
+            let destinationTextField = alertController.textFields?[0].text
+            let startDateTextField = alertController.textFields?[1].text
+            let endDateTextField = alertController.textFields?[2].text
+//            guard let destinationTextField = alertController.textFields?[0],
+//                  let startDateTextField = alertController.textFields?[1],
+//                  let endDateTextField = alertController.textFields?[2],
+//                  let destination = destinationTextField.text,
+//                  let startDateText = startDateTextField.text,
+//                  let endDateText = endDateTextField.text,
+//                  let startDate = dateFormatter.date(from: startDateText),
+//                  let endDate = dateFormatter.date(from: endDateText)
+//            else { return }
 
-            self.submit(destination: destination, startDate: startDate, endDate: endDate)
+            self.submit(destination: destinationTextField ?? "???", startDate: startDateTextField ?? "???", endDate: endDateTextField ?? "???")
         }
 
         alertController.addAction(cancelAction)
@@ -95,8 +98,10 @@ final class HomeViewController: UIViewController {
 
     }
 
-    func submit (destination: String, startDate: Date, endDate: Date) {
+    func submit (destination: String, startDate: String, endDate: String) {
         items.insert(destination, at: 0)
+//        items.insert(startDate, at: 0)
+//        items.insert(endDate, at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
