@@ -1,4 +1,4 @@
-//
+/
 //  HomeViewController.swift
 //  TravelPlanningApp
 //
@@ -10,6 +10,8 @@ import UIKit
 final class HomeViewController: UIViewController {
 
     var items = [String]()
+    
+    let alertController = UIAlertController(title: "Enter travel details: ", message: nil, preferredStyle: .alert)
     
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -44,8 +46,11 @@ final class HomeViewController: UIViewController {
     }
     
     @objc func addItem() {
-        let alertController = UIAlertController(title: "Enter travel details: ", message: nil, preferredStyle: .alert)
-
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let buttonToolBar = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneToolBarButton))
+        
         alertController.addTextField { textField in
             textField.placeholder = "Destination"
         }
@@ -54,6 +59,8 @@ final class HomeViewController: UIViewController {
             textField.placeholder = "Start Date"
             let datePicker = UIDatePicker()
             datePicker.datePickerMode = .date
+            datePicker.preferredDatePickerStyle = .inline
+            self.alertController.textFields?[1].inputAccessoryView = toolbar
             textField.inputView = datePicker
         }
 
@@ -61,6 +68,8 @@ final class HomeViewController: UIViewController {
             textField.placeholder = "End Date"
             let datePicker = UIDatePicker()
             datePicker.datePickerMode = .date
+            datePicker.preferredDatePickerStyle = .inline
+            self.alertController.textFields?[2].inputAccessoryView = toolbar
             textField.inputView = datePicker
         }
 
@@ -69,7 +78,7 @@ final class HomeViewController: UIViewController {
             let destinationTextField = alertController.textFields?[0].text
             let startDateTextField = alertController.textFields?[1].text
             let endDateTextField = alertController.textFields?[2].text
-//            guard let destinationTextField = alertController.textFields?[0],
+//            guard let destinationTextField = alertController.textFields![0],
 //                  let startDateTextField = alertController.textFields?[1],
 //                  let endDateTextField = alertController.textFields?[2],
 //                  let destination = destinationTextField.text,
@@ -104,6 +113,10 @@ final class HomeViewController: UIViewController {
 //        items.insert(endDate, at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
+    }
+    
+    @objc func doneToolBarButton() {
+        
     }
 }
 
