@@ -1,4 +1,4 @@
-/
+//
 //  HomeViewController.swift
 //  TravelPlanningApp
 //
@@ -11,20 +11,25 @@ final class HomeViewController: UIViewController {
 
     var items = [String]()
     
-    let alertController = UIAlertController(title: "Enter travel details: ", message: nil, preferredStyle: .alert)
+    let datePicker = UIDatePicker()
+    var activeTextField: UITextField? // Variable to keep track of the active text field
     
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "item")
         return tableView
     }()
-
+    
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
         configureTableView()
-
     }
 
     func configureNavigationBar() {
@@ -46,10 +51,12 @@ final class HomeViewController: UIViewController {
     }
     
     @objc func addItem() {
+        let alertController = UIAlertController(title: "Enter travel details: ", message: nil, preferredStyle: .alert)
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        let buttonToolBar = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneToolBarButton))
+        let doneToolBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneToolBarButtonPressed))
+        toolbar.setItems([doneToolBarButton], animated: true)
         
         alertController.addTextField { textField in
             textField.placeholder = "Destination"
@@ -57,20 +64,20 @@ final class HomeViewController: UIViewController {
 
         alertController.addTextField { textField in
             textField.placeholder = "Start Date"
-            let datePicker = UIDatePicker()
-            datePicker.datePickerMode = .date
-            datePicker.preferredDatePickerStyle = .inline
-            self.alertController.textFields?[1].inputAccessoryView = toolbar
-            textField.inputView = datePicker
+            self.datePicker.datePickerMode = .date
+            self.datePicker.preferredDatePickerStyle = .inline
+            textField.inputAccessoryView = toolbar
+            textField.inputView = self.datePicker
+            textField.delegate = self // Set the delegate
         }
 
         alertController.addTextField { textField in
             textField.placeholder = "End Date"
-            let datePicker = UIDatePicker()
-            datePicker.datePickerMode = .date
-            datePicker.preferredDatePickerStyle = .inline
-            self.alertController.textFields?[2].inputAccessoryView = toolbar
-            textField.inputView = datePicker
+            self.datePicker.datePickerMode = .date
+            self.datePicker.preferredDatePickerStyle = .inline
+            textField.inputAccessoryView = toolbar
+            textField.inputView = self.datePicker
+            textField.delegate = self // Set the delegate
         }
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -78,17 +85,10 @@ final class HomeViewController: UIViewController {
             let destinationTextField = alertController.textFields?[0].text
             let startDateTextField = alertController.textFields?[1].text
             let endDateTextField = alertController.textFields?[2].text
-//            guard let destinationTextField = alertController.textFields![0],
-//                  let startDateTextField = alertController.textFields?[1],
-//                  let endDateTextField = alertController.textFields?[2],
-//                  let destination = destinationTextField.text,
-//                  let startDateText = startDateTextField.text,
-//                  let endDateText = endDateTextField.text,
-//                  let startDate = dateFormatter.date(from: startDateText),
-//                  let endDate = dateFormatter.date(from: endDateText)
-//            else { return }
+            let startDate = dateFormatter.date(from: startDateTextField ?? "01/01/2001")
+            let endDate = dateFormatter.date(from: endDateTextField ?? "01/01/2001")
 
-            self.submit(destination: destinationTextField ?? "???", startDate: startDateTextField ?? "???", endDate: endDateTextField ?? "???")
+            self.submit(destination: destinationTextField ?? "???", startDate: startDate ?? Date(), endDate: endDate ?? Date())
         }
 
         alertController.addAction(cancelAction)
@@ -96,28 +96,23 @@ final class HomeViewController: UIViewController {
         present(alertController, animated: true)
     }
 
-    // DateFormatter to convert text to Date
-    let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
-        return formatter
-    }()
-
     @objc func clearItem() {
-
+        // Implementation for clearing items if needed
     }
 
-    func submit (destination: String, startDate: String, endDate: String) {
+    func submit(destination: String, startDate: Date, endDate: Date) {
         items.insert(destination, at: 0)
-//        items.insert(startDate, at: 0)
-//        items.insert(endDate, at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
     
-    @objc func doneToolBarButton() {
-        
+    @objc func doneToolBarButtonPressed() {
+        if let activeTextField = activeTextField {
+            activeTextField.text = dateFormatter.string(from: datePicker.date)
+        }
+        self.view.endEditing(true)
     }
+    
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -130,5 +125,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = items[indexPath.row]
         return cell
     }
+}
 
+extension HomeViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeTextField = nil
+    }
 }
